@@ -8,20 +8,30 @@
 //When correctAnswers + wrongAnswers == 10, the game ends and displays the final score
 //The next game does not start until the player clicks the New Game button
 //Global Variables
-var question = [];
-var answer1 = [];
-var answer2 = [];
-var answer3 = [];
-var answer4 = [];
-var answer5 = [];
-var answer6 = [];
-var answer7 = [];
-var answer8 = [];
-var answer9 = [];
-var answer0 = [];
+var question = ["What is the Meric name of the Corrupted People?" ,
+                "What type of Soul Gem can be used to capture human souls?" ,
+                "Who was the Nordic conqueror who first came to Skyrim with 500 Companions?" ,
+                "What is the name of the half-elven, half-human race that can resist 25% of magical damage?" ,
+                "What organization was responsible for the death of Emperor Titus Mede III?" ,
+                "Who was the Dragon Priest trapped under Labyrinthian by Savos Aren?" ,
+                "Which school of magic is unique, in that the Nords of Skyrim regard it with respect?" ,
+                "Where is the homeland of the feline race known as the Khajiit?" ,
+                "Which daedric prince was responsible for the creation of the first vampires?" ,
+                "What material can be used to improve the Dwemer artifact Volendrung?"];
+var answer1 = ["Altmer" , "Dunmer" , "Falmer" , "Orsimer"];
+var answer2 = ["Greater" , "Black" , "Human" , "Gold"];
+var answer3 = ["Tiber Septim" , "Kodlak Whitemane" , "Ysgramor" , "Sybille Stentor"];
+var answer4 = ["Breton" , "Nord" , "Redguard" , "Imperial"];
+var answer5 = ["The Thieves' Guild" , "The Dark Brotherhood" , "The Morag Tong" , "The Dawnguard"];
+var answer6 = ["Morokei" , "Konahrik" , "Ahzidal" , "Cyrodil"];
+var answer7 = ["Conjuration" , "Enchanting" , "Alteration" , "Restoration"];
+var answer8 = ["Atmora" , "Elsweyr" , "Black Marsh" , "Valenwood"];
+var answer9 = ["Molag Bal" , "Azura" , "Mehrunes Dagon" , "Malacath"];
+var answer0 = ["Moonstone" , "Steel" , "Ebony" , "Malachite"];
 
 var startGame = false;
 var timer = "";
 var rightAnswer = "";
 var wrongAnswer = "";
 var playerAnswer = "";
+
