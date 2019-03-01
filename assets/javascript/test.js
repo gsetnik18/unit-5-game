@@ -65,8 +65,6 @@ const questions = [
     }
 ];
 
-var usedQuestion = 0;
-
 var currentQuestion = '';
 
 var answerA = '';
@@ -74,7 +72,8 @@ var answerB = '';
 var answerC = '';
 var answerD = '';
 
-var startGame = '';
+var newGame = '';
+var newGameButton = '';
 var timer = "";
 var rightAnswers = "";
 var wrongAnswers = "";
@@ -82,12 +81,22 @@ var playerAnswer = "";
 
 var questionCounter = 0;
 
-var testButton = '';
-
-//for loop to randomize question
+//display first question
 console.log("Hello World!!");
-var questionsLeft = questions.length;
-currentQuestion = questions[0];
+//var questionsLeft = questions.length;
+//currentQuestion = questions[0];
+$(document).ready(function() {
+    newGame.attr({
+        "class": 'new-game-button',
+        "start-game": newGameButton
+    });
+    $(".start-button").append(newGame);
+});
+function startGame() {
+    currentQuestion = questions[0];
+    console.log(currentQuestions);
+    $(".start-button").empty();
+};
 console.log(currentQuestion.question);
 console.log(currentQuestion.answers);
 console.log(currentQuestion.rightAnswer);
@@ -97,3 +106,29 @@ $('.answer-block').append("<button class='answer-buttons' id='answer-A'>" + curr
 $('.answer-block').append("<button class='answer-buttons' id='answer-B'>" + currentQuestion.answers[1] + "</button>" + "<br>");
 $('.answer-block').append("<button class='answer-buttons' id='answer-C'>" + currentQuestion.answers[2] + "</button>" + "<br>");
 $('.answer-block').append("<button class='answer-buttons' id='answer-D'>" + currentQuestion.answers[3] + "</button>" + "<br>");
+
+$('.new-game-button').on("click" , startGame());
+
+//Function to start game:
+//On click new game button to execute
+//populate question-bar and answer-block with first question
+//show countdown timer at 10 seconds
+
+//Function to move to next question
+//Increment rightAnswers or wrongAnswers by one
+//Increment questions index by one
+//Empty question-bar and answer-block
+//Reset countdown timer to 10 seconds
+//Populate question-bar and answer-block with next question
+
+//If playerAnswer==rightAnswer, highlight rightAnswer for two seconds, increment rightAnswers then execute function to move to next question
+//If playerAnswer!=rightAnswer, highlight rightAnswer in green and playerAnswer in red for two seconds, increment wrongAnswers, then execute function to move to next question
+//If countdown timer reaches 0, display "Time's Up!" under answer-block for two seconds, increment wrongAnswers then execute function to move to next question
+
+//Timer
+
+//endGame Function:
+//Once next question function has executed 9 times (+first question)
+//Empty question-bar and answer-block
+//display rightAnswers and wrongAnswers
+//create new game button
