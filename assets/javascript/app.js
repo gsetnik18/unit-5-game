@@ -1,20 +1,20 @@
 //Player will be presented with a "New Game" button
 //When game starts:
-//A countdown clock displays "3", then "2", then "1", then "GO!"
 //First question and its possible answers appear on screen
 //Timer on screen starts counting down (10 seconds)
 //When player clicks the correct answer, the number of correct answers increments by 1, the correct answer is highlighted for a few seconds, and the next question and answer set appears
 //When player clicks the wrong answer, or the clock reaches zero, the number of incorrect answers increments by 1, the correct answer is highlighted for a few seconds, the answer clicked is highlighted in a different color for a few seconds, and the next question and answer set appears
 //When correctAnswers + wrongAnswers == 10, the game ends and displays the final score
 //The next game does not start until the player clicks the New Game button
+
 //Global Variables
-var questions = [
+const questions = [
     {
         question: "What is the Meric name of the Corrupted People?",
         answers: ["Altmer", "Dunmer", "Falmer", "Orsimer"],
         rightAnswer: 3
     },
-    
+
     {
         question: "What type of Soul Gem can be used to capture human souls?",
         answers: ["Greater", "Black", "Human", "Gold"],
@@ -64,79 +64,65 @@ var questions = [
     }
 ];
 
-var currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+var currentQuestion = '';
 
 var answerA = '';
 var answerB = '';
 var answerC = '';
 var answerD = '';
 
-var startGame = '';
+var newGame = '';
+var newGameButton = document.getElementById("#start-btn");
 var timer = "";
-var rightAnswer = "";
-var wrongAnswer = "";
+var rightAnswers = "";
+var wrongAnswers = "";
 var playerAnswer = "";
 
+var questionCounter = 0;
 
-startGame = function() {
+//display first question
+//var questionsLeft = questions.length;
+//currentQuestion = questions[0];
 
-    $(".question-bar").empty();
+var startGame = function() {
+    $("#start-btn").remove();
 
-    $(".answer-block").empty();
-}
+    currentQuestion = questions[0];
 
+    console.log(currentQuestion.question);
+    console.log(currentQuestion.answers);
+    console.log(currentQuestion.rightAnswer);
 
-for (i = 0; i < 1; i++) {
-    currentQuestion = $("<div>");
-    answerA = $("<div>");
-    answerB = $("<div>");
-    answerC = $("<div>");
-    answerD = $("<div>");
-
-    question = questions[Math.floor(Math.random()*questions.length)];
-
-    console.log(question);
-
-    $("#current-question").html(questions.question);
-
-    currentQuestion.attr({
-        "class": 'current-question',
-        "id": 'trivia-question',
-        "question-value": (questions.question)
-    });
-    $(".question-bar").append(currentQuestion);
-
-    $(document).ready(function(){
-          $('.current-question').append("<p>Question: </p>" + question);
-    });
-
-    answerA.attr({
-        "class": 'possible-answer',
-        "id": 'answer-a',
-        "answer-value": (questions.answers)
-    });
-    $(".answer-block").append("<p>A: </p>" + answerA);
-
-    answerB.attr({
-        "class": 'possible-answer',
-        "id": 'answer-b',
-        "answer-value": (questions.answers)
-    });
-    $(".answer-block").append("<p>B: </p>" + answerB);
-
-    answerC.attr({
-        "class": 'possible-answer',
-        "id": 'answer-c',
-        "answer-value": (questions.answers)
-    });
-    $(".answer-block").append("<p>C: </p>" + answerC);
-
-    answerD.attr({
-        "class": 'possible-answer',
-        "id": 'answer-d',
-        "answer-value": (questions.answers)
-    });
-    $(".answer-block").append("<p>D: </p>" + answerD);
-
+    $('.question-bar').append(currentQuestion.question);
+    $('.answer-block').append("<button class='answer-buttons' id='answer-A'>" + currentQuestion.answers[0] + "</button>" + "<br>");
+    $('.answer-block').append("<button class='answer-buttons' id='answer-B'>" + currentQuestion.answers[1] + "</button>" + "<br>");
+    $('.answer-block').append("<button class='answer-buttons' id='answer-C'>" + currentQuestion.answers[2] + "</button>" + "<br>");
+    $('.answer-block').append("<button class='answer-buttons' id='answer-D'>" + currentQuestion.answers[3] + "</button>" + "<br>");
 };
 
+$("#start-btn").on("click", function() {
+    startGame();
+    });
+//Function to start game:
+//On click new game button to execute
+//populate question-bar and answer-block with first question
+//show countdown timer at 10 seconds
+
+//Function to move to next question
+//Increment rightAnswers or wrongAnswers by one
+//Increment questions index by one
+//Empty question-bar and answer-block
+//Reset countdown timer to 10 seconds
+//Populate question-bar and answer-block with next question
+
+//If playerAnswer==rightAnswer, highlight rightAnswer for two seconds, increment rightAnswers then execute function to move to next question
+//If playerAnswer!=rightAnswer, highlight rightAnswer in green and playerAnswer in red for two seconds, increment wrongAnswers, then execute function to move to next question
+//If countdown timer reaches 0, display "Time's Up!" under answer-block for two seconds, increment wrongAnswers then execute function to move to next question
+
+//Timer
+
+//endGame Function:
+//Once next question function has executed 9 times (+first question)
+//Empty question-bar and answer-block
+//display rightAnswers and wrongAnswers
+//create new game button
