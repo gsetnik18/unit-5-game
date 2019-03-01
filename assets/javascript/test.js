@@ -7,14 +7,15 @@
 //When player clicks the wrong answer, or the clock reaches zero, the number of incorrect answers increments by 1, the correct answer is highlighted for a few seconds, the answer clicked is highlighted in a different color for a few seconds, and the next question and answer set appears
 //When correctAnswers + wrongAnswers == 10, the game ends and displays the final score
 //The next game does not start until the player clicks the New Game button
+
 //Global Variables
-var questions = [
+const questions = [
     {
         question: "What is the Meric name of the Corrupted People?",
         answers: ["Altmer", "Dunmer", "Falmer", "Orsimer"],
         rightAnswer: 3
     },
-    
+
     {
         question: "What type of Soul Gem can be used to capture human souls?",
         answers: ["Greater", "Black", "Human", "Gold"],
@@ -64,7 +65,9 @@ var questions = [
     }
 ];
 
-var currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+var usedQuestion = 0;
+
+var currentQuestion = '';
 
 var answerA = '';
 var answerB = '';
@@ -73,70 +76,24 @@ var answerD = '';
 
 var startGame = '';
 var timer = "";
-var rightAnswer = "";
-var wrongAnswer = "";
+var rightAnswers = "";
+var wrongAnswers = "";
 var playerAnswer = "";
 
+var questionCounter = 0;
 
-startGame = function() {
+var testButton = '';
 
-    $(".question-bar").empty();
+//for loop to randomize question
+console.log("Hello World!!");
+var questionsLeft = questions.length;
+currentQuestion = questions[0];
+console.log(currentQuestion.question);
+console.log(currentQuestion.answers);
+console.log(currentQuestion.rightAnswer);
 
-    $(".answer-block").empty();
-}
-
-
-for (i = 0; i < 1; i++) {
-    currentQuestion = $("<div>");
-    answerA = $("<div>");
-    answerB = $("<div>");
-    answerC = $("<div>");
-    answerD = $("<div>");
-
-    question = questions[Math.floor(Math.random()*questions.length)];
-
-    console.log(question);
-
-    $("#current-question").html(questions.question);
-
-    currentQuestion.attr({
-        "class": 'current-question',
-        "id": 'trivia-question',
-        "question-value": (questions.question)
-    });
-    $(".question-bar").append(currentQuestion);
-
-    $(document).ready(function(){
-          $('.current-question').append("<p>Question: </p>" + question);
-    });
-
-    answerA.attr({
-        "class": 'possible-answer',
-        "id": 'answer-a',
-        "answer-value": (questions.answers)
-    });
-    $(".answer-block").append("<p>A: </p>" + answerA);
-
-    answerB.attr({
-        "class": 'possible-answer',
-        "id": 'answer-b',
-        "answer-value": (questions.answers)
-    });
-    $(".answer-block").append("<p>B: </p>" + answerB);
-
-    answerC.attr({
-        "class": 'possible-answer',
-        "id": 'answer-c',
-        "answer-value": (questions.answers)
-    });
-    $(".answer-block").append("<p>C: </p>" + answerC);
-
-    answerD.attr({
-        "class": 'possible-answer',
-        "id": 'answer-d',
-        "answer-value": (questions.answers)
-    });
-    $(".answer-block").append("<p>D: </p>" + answerD);
-
-};
-
+$('.question-bar').append(currentQuestion.question);
+$('.answer-block').append("<button class='answer-buttons' id='answer-A'>" + currentQuestion.answers[0] + "</button>" + "<br>");
+$('.answer-block').append("<button class='answer-buttons' id='answer-B'>" + currentQuestion.answers[1] + "</button>" + "<br>");
+$('.answer-block').append("<button class='answer-buttons' id='answer-C'>" + currentQuestion.answers[2] + "</button>" + "<br>");
+$('.answer-block').append("<button class='answer-buttons' id='answer-D'>" + currentQuestion.answers[3] + "</button>" + "<br>");
