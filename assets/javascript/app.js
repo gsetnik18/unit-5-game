@@ -8,7 +8,7 @@
 //The next game does not start until the player clicks the New Game button
 
 //Global Variables
-const questions = [
+var questions = [
     {
         question: "What is the Meric name of the Corrupted People?",
         answers: ["Altmer", "Dunmer", "Falmer", "Orsimer"],
@@ -64,12 +64,13 @@ const questions = [
     }
 ];
 
-var currentQuestion = '';
+var firstQuestion = '';
+var currentQuestion = 0;
 
-var answerA = '';
-var answerB = '';
-var answerC = '';
-var answerD = '';
+var answerA = document.getElementById("#answer-A");
+var answerB = document.getElementById("#answer-B");
+var answerC = document.getElementById("#answer-C");
+var answerD = document.getElementById("#answer-D");
 
 var newGame = '';
 var newGameButton = document.getElementById("#start-btn");
@@ -77,17 +78,23 @@ var timer = "";
 var rightAnswers = "";
 var wrongAnswers = "";
 var playerAnswer = "";
+var i = 0;
 
 var questionCounter = 0;
 
-//display first question
-//var questionsLeft = questions.length;
-//currentQuestion = questions[0];
+var startGame = function () {
+    $(".start-button").remove();
+};
 
-var startGame = function() {
-    $("#start-btn").remove();
+$(".start-button").on("click", function () {
+    startGame();
+    firstQuestion();
+    //startTimer();
+});
 
-    currentQuestion = questions[0];
+var firstQuestion = function () {
+
+    currentQuestion = questions[i];
 
     console.log(currentQuestion.question);
     console.log(currentQuestion.answers);
@@ -98,11 +105,26 @@ var startGame = function() {
     $('.answer-block').append("<button class='answer-buttons' id='answer-B'>" + currentQuestion.answers[1] + "</button>" + "<br>");
     $('.answer-block').append("<button class='answer-buttons' id='answer-C'>" + currentQuestion.answers[2] + "</button>" + "<br>");
     $('.answer-block').append("<button class='answer-buttons' id='answer-D'>" + currentQuestion.answers[3] + "</button>" + "<br>");
+
+    $("#answer-A" || "#answer-B" || "#answer-C" || "#answer-D").on("click" , function() {
+        nextQuestion();
+        firstQuestion();
+        //startTimer();
+    });
+
+    var nextQuestion = function () {
+
+        if(i < 10) {
+        $(".question-bar").empty();
+        $(".answer-block").empty();
+        i++;
+        questionCounter++;
+        console.log(i);
+        };
+    };
 };
 
-$("#start-btn").on("click", function() {
-    startGame();
-    });
+
 //Function to start game:
 //On click new game button to execute
 //populate question-bar and answer-block with first question
