@@ -1,6 +1,5 @@
 //Player will be presented with a "New Game" button
 //When game starts:
-//A countdown clock displays "3", then "2", then "1", then "GO!"
 //First question and its possible answers appear on screen
 //Timer on screen starts counting down (10 seconds)
 //When player clicks the correct answer, the number of correct answers increments by 1, the correct answer is highlighted for a few seconds, and the next question and answer set appears
@@ -73,7 +72,7 @@ var answerC = '';
 var answerD = '';
 
 var newGame = '';
-var newGameButton = '';
+var newGameButton = 'New Game';
 var timer = "";
 var rightAnswers = "";
 var wrongAnswers = "";
@@ -82,21 +81,16 @@ var playerAnswer = "";
 var questionCounter = 0;
 
 //display first question
-console.log("Hello World!!");
 //var questionsLeft = questions.length;
 //currentQuestion = questions[0];
 $(document).ready(function() {
-    newGame.attr({
-        "class": 'new-game-button',
-        "start-game": newGameButton
-    });
-    $(".start-button").append(newGame);
+    console.log("Hello World!!");
+    $(".start-button").append("<button class='new-game'>" + newGameButton + "</button>");
+
 });
-function startGame() {
-    currentQuestion = questions[0];
-    console.log(currentQuestions);
-    $(".start-button").empty();
-};
+$(newGameButton).on("click" , startGame())
+{
+$(newGameButton).remove();
 console.log(currentQuestion.question);
 console.log(currentQuestion.answers);
 console.log(currentQuestion.rightAnswer);
@@ -106,8 +100,13 @@ $('.answer-block').append("<button class='answer-buttons' id='answer-A'>" + curr
 $('.answer-block').append("<button class='answer-buttons' id='answer-B'>" + currentQuestion.answers[1] + "</button>" + "<br>");
 $('.answer-block').append("<button class='answer-buttons' id='answer-C'>" + currentQuestion.answers[2] + "</button>" + "<br>");
 $('.answer-block').append("<button class='answer-buttons' id='answer-D'>" + currentQuestion.answers[3] + "</button>" + "<br>");
+};
 
-$('.new-game-button').on("click" , startGame());
+function startGame() {
+    currentQuestion = questions[0];
+    console.log(currentQuestion);
+    $(".start-button").empty();
+};
 
 //Function to start game:
 //On click new game button to execute
