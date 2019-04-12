@@ -12,7 +12,7 @@ var questions = [
     {
         question: "What is the Meric name of the Corrupted People?",
         answers: ["Altmer", "Dunmer", "Falmer", "Orsimer"],
-        rightAnswer: 3
+        rightAnswer: "Orsimer"
     },
 
     {
@@ -67,64 +67,90 @@ var questions = [
 var firstQuestion = '';
 var currentQuestion = 0;
 
-var answerA = document.getElementById("#answer-A");
-var answerB = document.getElementById("#answer-B");
-var answerC = document.getElementById("#answer-C");
-var answerD = document.getElementById("#answer-D");
-
 var newGame = '';
-var newGameButton = document.getElementById("#start-btn");
 var timer = "";
 var rightAnswers = "";
 var wrongAnswers = "";
 var playerAnswer = "";
-var i = 0;
 
 var questionCounter = 0;
 
 var startGame = function () {
+
+    //removes the New Game button to make way for the first question
     $(".start-button").remove();
 };
 
 $(".start-button").on("click", function () {
+    //here we are calling the function that removes the New Game button
     startGame();
-    firstQuestion();
+    //here we call the function that displays the first question
+    renderQuestion();
     //startTimer();
 });
 
-var firstQuestion = function () {
+//listens for a button click within the answer block
+$(".answer-block").on("click", ".answer-buttons", function () {
+    console.log("Hello World");
+    var answer = $(this).text();
+    console.log(answer);
+    answerCheck(answer);
 
-    currentQuestion = questions[i];
+    nextQuestion();
+});
 
-    console.log(currentQuestion.question);
-    console.log(currentQuestion.answers);
-    console.log(currentQuestion.rightAnswer);
+function answerCheck(answer) {
+    if (answer === questions[currentQuestion].rightAnswer) {
+        console.log("Correct!");
+        //function to display the correct answer as green and the wrong answer, if clicked, as red, for three seconds,
+        //before running the nextQuestion function again
+        
+    }
+}
+//this function finds the current index of the question array, and displays its contents
+var renderQuestion = function () {
 
-    $('.question-bar').append(currentQuestion.question);
-    $('.answer-block').append("<button class='answer-buttons' id='answer-A'>" + currentQuestion.answers[0] + "</button>" + "<br>");
-    $('.answer-block').append("<button class='answer-buttons' id='answer-B'>" + currentQuestion.answers[1] + "</button>" + "<br>");
-    $('.answer-block').append("<button class='answer-buttons' id='answer-C'>" + currentQuestion.answers[2] + "</button>" + "<br>");
-    $('.answer-block').append("<button class='answer-buttons' id='answer-D'>" + currentQuestion.answers[3] + "</button>" + "<br>");
+    var question = questions[currentQuestion];
+    console.log(question);
 
-    $("#answer-A" || "#answer-B" || "#answer-C" || "#answer-D").on("click" , function() {
-        nextQuestion();
-        firstQuestion();
-        //startTimer();
-    });
+    $('.question-bar').append(question.question);
+    for (var i = 0; i < question.answers.length; i++) {
 
-    var nextQuestion = function () {
+        $('.answer-block').append("<button class='answer-buttons'>" + question.answers[i] + "</button>" + "<br>");
 
-        if(i < 10) {
-        $(".question-bar").empty();
-        $(".answer-block").empty();
-        i++;
-        questionCounter++;
-        console.log(i);
-        };
-    };
+    }
 };
 
+var nextQuestion = function () {
 
+    //this removes the current question and possible answers after it has been answered
+    $(".question-bar").empty();
+    $(".answer-block").empty();
+
+    //increments the index of the array by one, then calls the function again to bring in the next question
+    currentQuestion++;
+    renderQuestion();
+
+};
+//function to display the correct answer as green and the wrong answer, if clicked, as red, for three seconds,
+//before running the nextQuestion function again
+
+//this displays our timer, which counts down from 30. If an answer is not clicked on before it reaches 0,
+//the next question will automatically display, and the wrongAnswers will increment by 1
+var timeLeft = 30;
+var elem = document.getElementById('game-timer');
+
+var timerId = setInterval(countdown, 1000);
+
+function countdown() {
+    if (timeLeft == 0) {
+        clearTimeout(timerId);
+        nextQuestion();
+    } else {
+        elem.innerHTML = timeLeft + ' seconds remaining';
+        timeLeft--;
+    }
+}
 //Function to start game:
 //On click new game button to execute
 //populate question-bar and answer-block with first question
