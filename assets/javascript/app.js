@@ -87,6 +87,8 @@ $(".start-button").on("click", function () {
     //here we call the function that displays the first question
     renderQuestion();
     //startTimer();
+    resetTimer();
+
 });
 
 //listens for a button click within the answer block
@@ -104,12 +106,12 @@ function answerCheck(answer) {
         console.log("Correct!");
         //function to display the correct answer as green and the wrong answer, if clicked, as red, for three seconds,
         //before running the nextQuestion function again
-        
+
     }
 }
 //this function finds the current index of the question array, and displays its contents
 var renderQuestion = function () {
-
+    
     var question = questions[currentQuestion];
     console.log(question);
 
@@ -130,6 +132,7 @@ var nextQuestion = function () {
     //increments the index of the array by one, then calls the function again to bring in the next question
     currentQuestion++;
     renderQuestion();
+    resetTimer();
 
 };
 //function to display the correct answer as green and the wrong answer, if clicked, as red, for three seconds,
@@ -146,10 +149,15 @@ function countdown() {
     if (timeLeft == 0) {
         clearTimeout(timerId);
         nextQuestion();
+        resetTimer();
     } else {
         elem.innerHTML = timeLeft + ' seconds remaining';
         timeLeft--;
     }
+};
+
+function resetTimer(){
+    timeLeft = 30;
 }
 //Function to start game:
 //On click new game button to execute
