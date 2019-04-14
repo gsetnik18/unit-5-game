@@ -18,49 +18,49 @@ var questions = [
     {
         question: "What type of Soul Gem can be used to capture human souls?",
         answers: ["Greater", "Black", "Human", "Gold"],
-        rightAnswer: 1
+        rightAnswer: "Black"
     },
 
     {
         question: "Who was the Nordic conqueror who first came to Skyrim with 500 Companions?",
         answers: ["Tiber Septim", "Kodlak Whitemane", "Ysgramor", "Sybille Stentor"],
-        rightAnswer: 2
+        rightAnswer: "Ysgramor"
     },
 
     {
         question: "What is the name of the half-elven, half-human race that can resist 25% of magical damage?",
         answers: ["Breton", "Nord", "Redguard", "Imperial"],
-        rightAnswer: 0
+        rightAnswer: "Breton"
     },
 
     {
         question: "What organization was responsible for the death of Emperor Titus Mede III?",
         answers: ["The Thieves' Guild", "The Dark Brotherhood", "The Morag Tong", "The Dawnguard"],
-        rightAnswer: 1
+        rightAnswer: "The Dark Brotherhood"
     },
 
     {
         question: "Who was the Dragon Priest trapped under Labyrinthian by Savos Aren?",
         answers: ["Morokei", "Konahrik", "Ahzidal", "Cyrodil"],
-        rightAnswer: 0
+        rightAnswer: "Morokei"
     },
 
     {
         question: "Which school of magic is unique, in that the Nords of Skyrim regard it with respect?",
         answers: ["Conjuration", "Enchanting", "Alteration", "Restoration"],
-        rightAnswer: 3
+        rightAnswer: "Restoration"
     },
 
     {
         question: "Where is the homeland of the feline race known as the Khajiit?",
         answers: ["Atmora", "Elsweyr", "Black Marsh", "Valenwood"],
-        rightAnswer: 1
+        rightAnswer: "Elsweyr"
     },
 
     {
         question: "What material can be used to improve the Dwemer artifact Volendrung?",
         answers: ["Moonstone", "Steel", "Ebony", "Malachite"],
-        rightAnswer: 2
+        rightAnswer: "Ebony"
     }
 ];
 
